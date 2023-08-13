@@ -11,18 +11,35 @@ class App extends React.Component{
     this.state = {count:0}
     this.handleClick = this.handleClick.bind(this)
   }
+  shouldComponentUpdate(nextProps,nextState){
+    const isCountEven = nextState.count %2 ===0;
 
+    if(isCountEven){
+      return true;
+    }
+    return false;
+  }
+
+  handleClick =()=>{
+    this.setState({count: this.state.count +1 });
+  };
 
   render(){
     console.log(`Rendering with count:-${this.state.count}`)
-    return(
+     return(
+      render(){
+        console.log(`Rendering with count:-${this.state.count}`)
+       return(
       <div>
         <span id="count">{this.state.count}</span>
         <button id="incr-btn" onClick={this.handleClick}>Increment</button>
+        <button id ="incr-btn" onClick={this.handleClick}>Increment</button>
       </div>
     )
-
+       }
+    );
   }
+
 }
 
 export default App;
